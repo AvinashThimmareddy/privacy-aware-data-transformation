@@ -1,0 +1,65 @@
+table_name: sales_transactions
+database: commerce_db
+description: Customer sales transactions
+owner: sales_team
+columns:
+- name: transaction_id
+  data_type: int
+  description: Unique transaction identifier (primary key)
+  nullable: true
+  is_key: true
+  examples:
+  - '1'
+  - '2'
+  - '3'
+- name: customer_id
+  data_type: int
+  description: Customer identifier (foreign key)
+  nullable: true
+  is_key: false
+  examples:
+  - '101'
+  - '102'
+  - '103'
+- name: product_name
+  data_type: string
+  description: Product name (Non-Sensitive)
+  nullable: true
+  is_key: false
+  examples:
+  - Laptop
+  - Mouse
+  - Monitor
+- name: quantity
+  data_type: int
+  description: Purchase quantity (Non-Sensitive)
+  nullable: true
+  is_key: false
+  examples:
+  - '1'
+  - '2'
+  - '5'
+- name: amount
+  data_type: float
+  description: Transaction amount (Sensitive)
+  nullable: true
+  is_key: false
+  examples:
+  - '1299.99'
+  - '2500.00'
+- name: payment_method
+  data_type: string
+  description: Payment method (Sensitive)
+  nullable: true
+  is_key: false
+  examples:
+  - credit_card
+  - debit_card
+- name: transaction_date
+  data_type: date
+  description: Transaction date (Non-Sensitive)
+  nullable: true
+  is_key: false
+  examples:
+  - '2024-12-01'
+  - '2024-12-15'

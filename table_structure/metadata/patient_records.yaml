@@ -1,0 +1,70 @@
+table_name: patient_records
+database: health_db
+description: Patient medical and health information
+owner: healthcare_admin
+columns:
+- name: patient_id
+  data_type: int
+  description: Unique patient identifier (primary key)
+  nullable: true
+  is_key: true
+  examples:
+  - '1'
+  - '2'
+  - '3'
+- name: patient_name
+  data_type: string
+  description: Patient full name (PHI)
+  nullable: true
+  is_key: false
+  examples:
+  - John Doe
+  - Jane Smith
+- name: medical_record_number
+  data_type: string
+  description: Medical record number (PHI)
+  nullable: true
+  is_key: false
+  examples:
+  - MRN123456
+  - MRN789012
+- name: diagnosis
+  data_type: string
+  description: Patient diagnosis (PHI/Sensitive)
+  nullable: true
+  is_key: false
+  examples:
+  - Diabetes Type 2
+  - Hypertension
+- name: medication
+  data_type: string
+  description: Prescribed medication (PHI)
+  nullable: true
+  is_key: false
+  examples:
+  - Metformin
+  - Lisinopril
+- name: dob
+  data_type: date
+  description: Date of birth (PHI)
+  nullable: true
+  is_key: false
+  examples:
+  - '1965-03-20'
+  - '1970-11-10'
+- name: visit_date
+  data_type: date
+  description: Last visit date (Non-Sensitive)
+  nullable: true
+  is_key: false
+  examples:
+  - '2024-12-15'
+  - '2024-11-20'
+- name: provider_name
+  data_type: string
+  description: Healthcare provider name (Non-Sensitive)
+  nullable: true
+  is_key: false
+  examples:
+  - Dr. Smith
+  - Nurse Johnson

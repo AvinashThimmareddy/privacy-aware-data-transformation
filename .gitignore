@@ -135,7 +135,7 @@ Thumbs.db
 # Generated files (can be recreated)
 data/synthetic/*.csv
 models/sensitivity_classifier.pkl
-table_structure/metadata/*.yaml
+# table_structure/metadata/*.yaml
 
 # Temporary files
 *.tmp

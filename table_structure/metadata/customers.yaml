@@ -1,0 +1,112 @@
+table_name: customers
+database: main_db
+description: Customer personal information and contact details
+owner: data_governance_team
+columns:
+- name: customer_id
+  data_type: int
+  description: Unique customer identifier (primary key)
+  nullable: true
+  is_key: true
+  examples:
+  - '1'
+  - '2'
+  - '3'
+- name: first_name
+  data_type: string
+  description: Customer first name (PII)
+  nullable: true
+  is_key: false
+  examples:
+  - John
+  - Jane
+  - Bob
+- name: last_name
+  data_type: string
+  description: Customer last name (PII)
+  nullable: true
+  is_key: false
+  examples:
+  - Doe
+  - Smith
+  - Johnson
+- name: email
+  data_type: string
+  description: Customer email address (PII)
+  nullable: true
+  is_key: false
+  examples:
+  - john@example.com
+  - jane@example.com
+- name: phone
+  data_type: string
+  description: Customer phone number (PII)
+  nullable: true
+  is_key: false
+  examples:
+  - 555-0101
+  - 555-0102
+- name: ssn
+  data_type: string
+  description: Social Security Number (Sensitive PII)
+  nullable: true
+  is_key: false
+  examples:
+  - 123-45-6789
+  - 987-65-4321
+- name: dob
+  data_type: date
+  description: Date of birth (PII)
+  nullable: true
+  is_key: false
+  examples:
+  - '1990-01-15'
+  - '1985-06-20'
+- name: address
+  data_type: string
+  description: Customer street address (PII)
+  nullable: true
+  is_key: false
+  examples:
+  - 123 Main St
+  - 456 Oak Ave
+- name: city
+  data_type: string
+  description: Customer city (Sensitive)
+  nullable: true
+  is_key: false
+  examples:
+  - New York
+  - Los Angeles
+- name: state
+  data_type: string
+  description: Customer state
+  nullable: true
+  is_key: false
+  examples:
+  - NY
+  - CA
+- name: zip_code
+  data_type: string
+  description: Customer zip code (Sensitive)
+  nullable: true
+  is_key: false
+  examples:
+  - '10001'
+  - '90001'
+- name: registration_date
+  data_type: date
+  description: Account registration date (Non-Sensitive)
+  nullable: true
+  is_key: false
+  examples:
+  - '2020-01-01'
+  - '2021-06-15'
+- name: status
+  data_type: string
+  description: Customer account status (Non-Sensitive)
+  nullable: true
+  is_key: false
+  examples:
+  - active
+  - inactive
