@@ -8,8 +8,6 @@ Welcome! We're excited that you're interested in contributing to this open-sourc
 
 This is a research framework for **automated sensitive data classification** and **adaptive privacy-preserving data transformations**. It uses metadata-driven machine learning techniques to identify PII, PHI, and sensitive data, then dynamically applies privacy transformations based on consumer policies.
 
-**Original Contribution**: Developed as part of an EB1A application demonstrating significant innovation in privacy-preserving data engineering.
-
 ---
 
 ## 🤝 How to Contribute

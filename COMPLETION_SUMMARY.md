@@ -405,7 +405,7 @@ privacy-aware-data-transformation/
 
 ---
 
-## 🎯 Final Checklist
+## 📅 Getting Started
 
 Before using this framework, ensure you have:
 
