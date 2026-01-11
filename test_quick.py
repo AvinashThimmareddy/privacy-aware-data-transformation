@@ -97,7 +97,7 @@ def main():
         print(f"  ✗ Error loading CLI: {e}")
     
     print("\n" + "="*80)
-    print("✓ All tests completed successfully!")
+    print("All tests completed successfully!")
     print("="*80 + "\n")
     
     print("Next steps:")

@@ -92,7 +92,8 @@ class MLClassifierTrainer:
 
         # Create pipeline: TF-IDF → Logistic Regression
         self.model = Pipeline([
-            ('tfidf', TfidfVectorizer(
+            (
+                'tfidf', TfidfVectorizer(
                 max_features=100,
                 lowercase=True,
                 ngram_range=(1, 2),  # Unigrams and bigrams
@@ -112,13 +113,13 @@ class MLClassifierTrainer:
 
         # Print training info
         classes_in_training = set(labels)
-        print(f"  ✓ Training complete")
-        print(f"  Classes: {', '.join(sorted(classes_in_training))}")
-        print(f"  Samples per class:")
+        print(f"Training complete")
+        print(f"Classes: {', '.join(sorted(classes_in_training))}")
+        print(f"Samples per class:")
         for cls in sorted(self.classes):
             count = labels.count(cls)
             if count > 0:
-                print(f"    {cls}: {count}")
+                print(f"{cls}: {count}")
 
     def predict(self, feature_text: str) -> Tuple[str, float]:
         """
@@ -175,7 +176,7 @@ class MLClassifierTrainer:
         Path(filepath).parent.mkdir(parents=True, exist_ok=True)
         with open(filepath, 'wb') as f:
             pickle.dump(self.model, f)
-        print(f"✓ Model saved to {filepath}")
+        print(f"Model saved to {filepath}")
 
     @staticmethod
     def load_model(filepath: str) -> Pipeline:

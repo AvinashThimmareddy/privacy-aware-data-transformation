@@ -122,7 +122,7 @@ def main():
         print("  python train_ml_classifier.py")
 
     print("\n" + "="*80)
-    print("✓ ML Classification Test Complete")
+    print("ML Classification Test Complete")
     print("="*80 + "\n")
 
 

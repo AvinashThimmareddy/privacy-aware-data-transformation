@@ -3,7 +3,7 @@
 Training Script for ML-Based Sensitivity Classifier
 
 This script:
-1. Scans table_structure/metadata/ for all YAML files
+1. Scans table_structure/metadata/ from all YAML files
 2. Extracts training data from column metadata
 3. Trains a Logistic Regression model with TF-IDF features
 4. Saves the trained model to models/sensitivity_classifier.pkl
@@ -126,27 +126,20 @@ def extract_training_data_from_metadata(metadata_dir: str) -> list:
 
 def main():
     """Main training execution."""
-    print("\n" + "="*80)
-    print("ML Sensitivity Classifier Training Pipeline")
-    print("="*80 + "\n")
+    print("\nML Sensitivity Classifier Training Pipeline\n")
 
-    # Configuration
     metadata_dir = Path("table_structure/metadata")
     model_output_path = Path("models/sensitivity_classifier.pkl")
 
-    # Step 1: Extract training data
-    print("Step 1: Extracting training data from metadata files...")
-    print("-" * 80)
+    print("Extracting training data from metadata files...")
     training_data = extract_training_data_from_metadata(str(metadata_dir))
 
     if not training_data:
         print("\nError: No training data extracted. Check metadata files.")
         sys.exit(1)
 
-    print(f"\n✓ Extracted {len(training_data)} training samples")
-
-    # Print distribution
-    print("\nTraining data distribution:")
+    print(f"\nExtracted {len(training_data)} training samples\n")
+    print("Distribution:")
     from collections import Counter
     label_counts = Counter(item['label'] for item in training_data)
     for label in ['PII', 'PHI', 'Sensitive', 'Non-Sensitive']:
@@ -155,42 +148,25 @@ def main():
             percentage = (count / len(training_data)) * 100
             print(f"  {label:20} {count:3d} samples ({percentage:5.1f}%)")
 
-    # Step 2: Prepare training data
-    print("\n" + "="*80)
-    print("Step 2: Preparing training data...")
-    print("-" * 80)
-
     trainer = MLClassifierTrainer()
     feature_texts = [item['features'] for item in training_data]
     labels = [item['label'] for item in training_data]
 
-    # Step 3: Train model
-    print("\n" + "="*80)
-    print("Step 3: Training ML model...")
-    print("-" * 80 + "\n")
+    print("\nTraining model...\n")
 
     trainer.train(feature_texts, labels)
 
-    # Step 4: Save model
-    print("\n" + "="*80)
-    print("Step 4: Saving trained model...")
-    print("-" * 80 + "\n")
+    print("\nSaving model...\n")
 
     trainer.save_model(str(model_output_path))
 
-    # Step 5: Display feature importances
-    print("\n" + "="*80)
-    print("Step 5: Top 15 important features")
-    print("-" * 80 + "\n")
+    print("\nTop 15 important features:\n")
 
     importances = trainer.get_feature_importances()
     for i, (feature, score) in enumerate(list(importances.items())[:15], 1):
         print(f"  {i:2d}. {feature:30} (importance: {score:.4f})")
 
-    # Step 6: Evaluation
-    print("\n" + "="*80)
-    print("Step 6: Model evaluation")
-    print("-" * 80 + "\n")
+    print("\nModel evaluation:\n")
 
     # Predict on training data to show performance
     predictions = trainer.predict_batch(feature_texts)
@@ -206,11 +182,8 @@ def main():
         match = "✓" if pred == true_label else "✗"
         print(f"  {i}. {training_item['column_name']:30} | True: {true_label:15} | Pred: {pred:15} | Conf: {conf:.2f} {match}")
 
-    print("\n" + "="*80)
-    print("✓ Training complete!")
-    print("="*80)
-    print(f"\nModel saved to: {model_output_path}")
-    print("\nNext steps:")
+    print(f"\nModel saved to: {model_output_path}\n")
+    print("Next steps:")
     print("  1. The classifier will automatically load this model")
     print("  2. To add more training data:")
     print("     - Add new YAML files to table_structure/metadata/")

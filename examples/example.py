@@ -95,12 +95,9 @@ def generate_sample_sales_data(n_rows: int = 5) -> pd.DataFrame:
 
 def main():
     """Main example execution."""
-    print("\n" + "="*80)
-    print("Privacy-Aware Data Transformation Framework - Example Script")
-    print("="*80 + "\n")
+    print("\nPrivacy-Aware Data Transformation Framework - Example Script\n")
 
-    # Step 1: Generate sample metadata
-    print("[Step 1] Generating sample metadata files...")
+    print("Generating sample metadata files...")
     metadata_gen = SyntheticMetadataGenerator()
     metadata_dir = Path('table_structure/metadata')
     metadata_dir.mkdir(parents=True, exist_ok=True)
@@ -113,8 +110,7 @@ def main():
         filepath = metadata_gen.save_metadata_yaml(table_meta, str(metadata_dir))
         print(f"Generated: {filepath}")
 
-    # Step 2: Generate sample data files
-    print("\n[Step 2] Generating sample data files...")
+    print("\nGenerating sample data files...")
     data_dir = Path('data/synthetic')
     data_dir.mkdir(parents=True, exist_ok=True)
 
@@ -136,9 +132,7 @@ def main():
     save_csv_data(sales_df, str(sales_file))
     print(f"Generated: {sales_file}")
 
-    # Step 3: Classify sensitive columns
-    # Using ML classifier: uses trained model if available, falls back to rule-based if not
-    print("\n[Step 3] Classifying sensitive columns...")
+    print("\nClassifying sensitive columns...")
     classifier = SensitivityClassifier(use_ml=True)
 
     # Process each table
@@ -162,8 +156,7 @@ def main():
 
         results[table_name] = (df, table_meta, classifications)
 
-    # Step 4: Apply transformations for different consumer types
-    print("\n[Step 4] Applying privacy transformations for different consumers...")
+    print("\nApplying privacy transformations for different consumers...")
 
     policy_engine = PolicyEngine()
     transformation_engine = TransformationEngine()
@@ -185,10 +178,7 @@ def main():
             save_csv_data(transformed_df, str(output_file))
             print(f"    ✓ {table_name} -> {output_file}")
 
-    print("\n" + "="*80)
-    print("Example execution completed successfully!")
-    print("="*80 + "\n")
-
+    print("\nDone!\n")
     print("Generated files:")
     print(f"  Metadata:     {metadata_dir}/")
     print(f"  Original data: {data_dir}/")
